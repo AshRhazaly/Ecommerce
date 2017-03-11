@@ -22,10 +22,8 @@
           <input class="form-control mr-sm-2 search-field" type="text" placeholder="...search here">
           <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
       </form>
-
-      <span class="glyphicons glyphicons-home"></span>
+      <%= link_to '<i class="fa fa-home fa-2x" aria-hidden="true"></i>'.html_safe, products_path %>
     </section>
-
   </nav>
   <body>
     <%= yield %>

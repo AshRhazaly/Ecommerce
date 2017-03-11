@@ -12,9 +12,19 @@
 .search-bar {
   margin: auto;
 }
+
 .search-field:hover {
   width: 300px;
 }
+
+.fa-home {
+  margin-right: 25px;
+}
+.fa-home:hover {
+    color: white;
+    cursor: pointer;
+}
+
 .product-card {
   margin: 10px 0 10px 0;
 }
