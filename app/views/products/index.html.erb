@@ -1,9 +1,11 @@
 
 <main class="container">
-    <p id="notice"><%= notice %></p>
+    <br />
+    <p class="container notice"><%= notice %></p>
 
     <div class="row">
         <% @products.each do |product| %>
+
         <section class="col-4">
             <section class="card product-card">
                 <section class="card-block">
@@ -21,6 +23,8 @@
                     <section class="card-text product-description">
                         <%= product.description.truncate(100) %>
                     </section>
+                    <br />
+                    <%= link_to 'More info', product_path(product), class: "btn btn-outline-primary" %>
                 </section>
             </section>
         </section>
