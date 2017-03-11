@@ -5,6 +5,8 @@ git_source(:github) do |repo_name|
   "https://github.com/#{repo_name}.git"
 end
 
+#bootstrap form_for
+gem 'bootstrap_form'
 #rails admin
 gem 'rails_admin', '~> 1.1.1'
 #pagination
