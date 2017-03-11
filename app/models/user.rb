@@ -9,10 +9,11 @@ class User < ApplicationRecord
   :presence => true,
   :uniqueness => {
     :case_sensitive => false
-  } 
+  }
 
   devise :database_authenticatable, :registerable,
-         :recoverable, :rememberable, :trackable, :validatable, :authentication_keys => [:login]
+         :recoverable, :rememberable, :trackable, :validatable, :authentication_keys => [:login],
+         :omniauthable, :omniauth_providers => [:facebook]
 
   def login=(login)
     @login = login
