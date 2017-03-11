@@ -1,1 +1,31 @@
-hello
+<br />
+<main class="container">
+<div class="row search-products">
+  <% if @product.present? %>
+    <% @product.each do |product| %>
+      <section class="col-4">
+          <section class="card product-card">
+              <section class="card-block">
+                  <img class="card-img-top" src="http://placehold.it/250x250" alt="Card image cap">
+                  <br/>
+                  <br/>
+                  <header class="card-title product-name">
+                      <%= product.name %>
+                  </header>
+                  <br/>
+                  <section class="card-text product-price">
+                      <%= product.price %>
+                  </section>
+                  <br/>
+                  <section class="card-text product-description">
+                      <%= product.description.truncate(100) %>
+                  </section>
+              </section>
+          </section>
+      </section>
+    <% end %>
+  <% else %>
+    <p>There are no products containing the term(s) <%= params[:search] %>.</p>
+  <% end %>
+</div>
+</main>
