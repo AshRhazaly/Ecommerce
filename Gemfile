@@ -5,6 +5,8 @@ git_source(:github) do |repo_name|
   "https://github.com/#{repo_name}.git"
 end
 
+#rails admin
+gem 'rails_admin', '~> 1.1.1'
 #pagination
 gem 'kaminari'
 #user authentication
