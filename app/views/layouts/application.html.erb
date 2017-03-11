@@ -1,31 +1,31 @@
 <!DOCTYPE html>
 <html>
-  <head>
-    <title>Ecommerce</title>
-    <%= csrf_meta_tags %>
+    <head>
+        <title>Ecommerce</title>
+        <%= csrf_meta_tags %>
 
-    <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload' %>
-    <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
-  </head>
-  <nav class="navbar navbar-light site-navbar" style="background-color: #e3f2fd;">
-      <section class="row page-links">
-          <% if user_signed_in? %>
-          <%= link_to('Logout', destroy_user_session_path, :method => :delete, class: "btn btn-outline-danger logout-button") %>
-          <span>&nbsp;&nbsp;&nbsp;</span>
-          <%= link_to('Edit Profile', edit_user_registration_path, class: "btn btn-outline-primary edit-profile-button") %>
-      <% else %>
-          <%= link_to('Login', new_user_session_path, class: "btn btn-outline-primary login-button")  %>
-          <span>&nbsp;&nbsp;&nbsp;</span>
-          <%= link_to('Sign up', new_user_registration_path, class: "btn btn-outline-warning signup-button") %>
-      <% end %>
-      <form class="form-inline search-bar">
-          <input class="form-control mr-sm-2 search-field" type="text" placeholder="...search here">
-          <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
-      </form>
-      <%= link_to '<i class="fa fa-home fa-2x" aria-hidden="true"></i>'.html_safe, products_path %>
-    </section>
-  </nav>
-  <body>
-    <%= yield %>
-  </body>
+        <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload' %>
+        <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
+    </head>
+    <nav class="navbar navbar-light site-navbar" style="background-color: #e3f2fd;">
+        <section class="row page-links">
+            <% if user_signed_in? %>
+              <%= link_to('Logout', destroy_user_session_path, :method => :delete, class: "btn btn-outline-danger logout-button") %>
+              <span>&nbsp;&nbsp;&nbsp;</span>
+              <%= link_to('Edit Profile', edit_user_registration_path, class: "btn btn-outline-primary edit-profile-button") %>
+            <% else %>
+              <%= link_to('Login', new_user_session_path, class: "btn btn-outline-primary login-button")  %>
+              <span>&nbsp;&nbsp;&nbsp;</span>
+              <%= link_to('Sign up', new_user_registration_path, class: "btn btn-outline-warning signup-button") %>
+            <% end %>
+            <%= form_for :search, url: search_products_path, method: "GET", :html => {:class => "form-inline search-bar"} do |f| %>
+              <%= text_field_tag :search, nil, placeholder: "..search here", class: "form-control mr-sm-2 search-field" %>
+              <%= submit_tag 'Search', class: "btn btn-outline-success my-2 my-sm-0"%>
+            <% end %>
+            <%= link_to '<i class="fa fa-home fa-2x" aria-hidden="true"></i>'.html_safe, products_path %>
+        </section>
+    </nav>
+    <body>
+        <%= yield %>
+    </body>
 </html>

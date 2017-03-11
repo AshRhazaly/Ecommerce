@@ -3,6 +3,10 @@ Rails.application.routes.draw do
   devise_for :users
   resources :products do
     resources :orders
+    collection do
+      get 'search'
+      post 'search'
+    end
   end
 
   root "products#index"

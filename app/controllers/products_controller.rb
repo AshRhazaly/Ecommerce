@@ -1,5 +1,5 @@
 class ProductsController < ApplicationController
-  before_action :authenticate_user!, except: [:index,:show]
+  before_action :authenticate_user!, except: [:index,:show, :search]
   before_action :set_product, only: [:show, :edit, :update, :destroy]
 
   # GET /products
@@ -13,6 +13,13 @@ class ProductsController < ApplicationController
   def show
   end
 
+  def search
+    @searched_value = params[:search]
+    # @products  = Product.search(params[:search]).page(params[:page]).per(4).order('created_at')
+    @product = Product.where("name LIKE ? OR description LIKE ?",
+     "%#{@searched_value}%", "%#{@searched_value}%")
+    render 'search'
+  end
   # GET /products/new
   def new
     @product = Product.new
