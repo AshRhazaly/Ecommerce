@@ -1,9 +1,10 @@
+<br />
 <main class="container">
 <h2>Log in</h2>
 
 <%= bootstrap_form_for(resource, as: resource_name, url: session_path(resource_name)) do |f| %>
   <div class="field">
-    <%= f.text_field :login %>
+    <%= f.text_field :login%>
   </div>
 
   <div class="field">
@@ -17,7 +18,7 @@
   <% end -%>
 
   <div class="actions">
-    <%= f.submit "Log in" %>
+    <%= f.submit "Log in", class: "btn btn-success" %>
   </div>
 <% end %>
 
