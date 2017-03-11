@@ -17,6 +17,8 @@
               <%= link_to('Login', new_user_session_path, class: "btn btn-outline-primary login-button")  %>
               <span>&nbsp;&nbsp;&nbsp;</span>
               <%= link_to('Sign up', new_user_registration_path, class: "btn btn-outline-warning signup-button") %>
+              <span>&nbsp;&nbsp;&nbsp;</span>
+              <%= link_to('Log in with Facebook', user_facebook_omniauth_authorize_path, class: "btn btn-primary") %>
             <% end %>
             <%= form_for :search, url: search_products_path, method: "GET", :html => {:class => "form-inline search-bar"} do |f| %>
               <%= text_field_tag :search, nil, placeholder: "..search here", class: "form-control mr-sm-2 search-field" %>
