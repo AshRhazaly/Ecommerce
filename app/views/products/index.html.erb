@@ -1,19 +1,4 @@
-<nav class="navbar navbar-light site-navbar" style="background-color: #e3f2fd;">
-    <section class="row page-links">
-        <% if user_signed_in? %>
-        <%= link_to('Logout', destroy_user_session_path, :method => :delete, class: "btn btn-outline-danger logout-button") %>
 
-    <% else %>
-        <%= link_to('Login', new_user_session_path, class: "btn btn-outline-primary login-button")  %>
-        <span>&nbsp;&nbsp;&nbsp;</span>
-        <%= link_to('Sign up', new_user_registration_path, class: "btn btn-outline-warning signup-button") %>
-    <% end %>
-    <form class="form-inline search-bar">
-        <input class="form-control mr-sm-2 search-field" type="text" placeholder="...search here">
-        <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
-    </form>
-  </section>
-</nav>
 <main class="container">
     <p id="notice"><%= notice %></p>
 
