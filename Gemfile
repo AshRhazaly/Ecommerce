@@ -5,6 +5,8 @@ git_source(:github) do |repo_name|
   "https://github.com/#{repo_name}.git"
 end
 
+# font -awesome icons
+gem 'font-awesome-sass', '~> 4.7.0'
 #bootstrap form_for
 gem 'bootstrap_form'
 #rails admin
