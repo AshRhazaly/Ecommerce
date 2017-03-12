@@ -7,6 +7,7 @@ end
 
 # integration for stripe
 gem 'stripe-rails'
+gem 'stripe'
 # font -awesome icons
 gem 'font-awesome-sass', '~> 4.7.0'
 #bootstrap form_for
