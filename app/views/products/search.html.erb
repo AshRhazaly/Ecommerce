@@ -20,6 +20,8 @@
                   <section class="card-text product-description">
                       <%= product.description.truncate(100) %>
                   </section>
+                  <br/>
+                  <%= link_to 'More Info', product_path(product), class: "btn btn-outline-primary" %>
               </section>
           </section>
       </section>
