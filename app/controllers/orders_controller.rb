@@ -24,8 +24,13 @@ class OrdersController < ApplicationController
   # POST /orders
   # POST /orders.json
   def create
-    @order = Order.new(order_params)
-
+    @order = Order.new(product_id: params[:product_id])
+    @product = Product.find(params[:product_id])
+    if @order.save
+      redirect_to @order.paypal_url(order_path(@order))
+    else
+      render 'index'
+    end
     respond_to do |format|
       if @order.save
         format.html { redirect_to @order, notice: 'Order was successfully created.' }
