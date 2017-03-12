@@ -29,7 +29,7 @@ class OrdersController < ApplicationController
     stripe_token = params[:stripeToken]
     payment_type = params[:stripeTokenType]
     customer_email = params[:stripeEmail]
-    Stripe.api_key = 'sk_test_9a5P2esbTpUfvdJZfTmZ06PF'
+    Stripe.api_key = Rails.configuration.stripe.secret_key
     Stripe::Charge.create (
     amount: @product.price* 100,
     currency:"sgd",
