@@ -32,7 +32,7 @@ class OrdersController < ApplicationController
     Stripe.api_key = Rails.configuration.stripe.secret_key
     Stripe::Charge.create (
     amount: @product.price* 100,
-    currency:"sgd",
+    currency:"usd",
     source: stripe_token
     )
     respond_to do |format|
