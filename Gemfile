@@ -5,6 +5,8 @@ git_source(:github) do |repo_name|
   "https://github.com/#{repo_name}.git"
 end
 
+# integration for stripe
+gem 'stripe-rails'
 # font -awesome icons
 gem 'font-awesome-sass', '~> 4.7.0'
 #bootstrap form_for
