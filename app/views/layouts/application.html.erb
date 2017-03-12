@@ -8,7 +8,7 @@
         <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
         <script type="text/javascript" src="https://js.stripe.com/v2/"></script>
     </head>
-    <nav class="navbar navbar-light site-navbar" style="background-color: #e3f2fd;">
+    <nav class="navbar fixed-top navbar-light site-navbar" style="background-color: #e3f2fd;">
         <section class="row page-links">
             <% if user_signed_in? %>
               <%= link_to('Logout', destroy_user_session_path, :method => :delete, class: "btn btn-outline-danger logout-button") %>
