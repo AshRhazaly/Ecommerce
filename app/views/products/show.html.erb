@@ -24,7 +24,8 @@
                     </section>
                     <br/>
                     <%= link_to 'Go Back', products_path, class: "btn btn-outline-primary" %>
-                    <span>&nbsp;&nbsp;&nbsp;</span>
+                    <br />
+                    <br />
                     <%= form_for [@product, Order.new], method: :post do %>
                       <script
                         src="https://checkout.stripe.com/checkout.js" class="stripe-button"
@@ -42,3 +43,6 @@
           </section>
         </section>
 </main>
+<br />
+<br />
+<br />
