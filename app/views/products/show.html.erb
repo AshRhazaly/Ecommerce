@@ -37,7 +37,11 @@
                         src="https://checkout.stripe.com/checkout.js"
                         class="stripe-button"
                         data-key="pk_test_pTJ7JEFGxnr5gdgtDG33ZhTt"
-                        data-amount=<%= @product.price * 100 %>
+                        data-amount= <%if user_signed_in? %>
+                                        <%= @product.price * 85 %>
+                                      <%else %>
+                                          <%=@product.price * 100 %>
+                                      <%end%>
                         data-name="Fruit Ninja"
                         data-description="Buy <%= @product.name %>"
                         data-image="https://stripe.com/img/documentation/checkout/marketplace.png"
