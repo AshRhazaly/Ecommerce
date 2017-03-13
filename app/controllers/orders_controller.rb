@@ -29,13 +29,16 @@ class OrdersController < ApplicationController
     stripe_token = params[:stripeToken]
     payment_type = params[:stripeTokenType]
     customer_email = params[:stripeEmail]
+    amount = user_signed_in? ? @product.price * 0.85 : @product.price
     Stripe.api_key = Rails.configuration.stripe.secret_key
     Stripe::Charge.create(
-    amount: (@product.price * 100).to_i,
+    amount: (amount * 100).to_i,
     currency: "usd",
-    source: stripe_token
+    source: stripe_token,
+    receipt_email: customer_email
     )
     flash[:notice] = "Yay, thanks for purchasing " + @product.name
+    redirect_to product_path(@product)
   end
 
   # PATCH/PUT /orders/1

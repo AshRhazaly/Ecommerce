@@ -1,11 +1,11 @@
-<br />
-<br />
-<br />
-<br />
+<br/>
+<br/>
+<br/>
+<br/>
 <main class="container">
-<p id="notice"><%= notice %></p>
+    <p id="notice"><%= notice %></p>
 
-<section class="row product-show">
+    <section class="row product-show">
         <section class="col-6">
             <img src="http://placehold.it/500x500" alt="Card image cap">
         </section>
@@ -18,7 +18,11 @@
                     </header>
                     <br/>
                     <section class="card-text product-price">
-                        <%= number_to_currency(@product.price) %>
+                        <%if user_signed_in? %>
+                          <%= number_to_currency(@product.price * 0.85) %>
+                        <%else %>
+                          <%= number_to_currency(@product.price) %>
+                        <%end%>
                     </section>
                     <br/>
                     <section class="card-text product-description">
@@ -26,24 +30,24 @@
                     </section>
                     <br/>
                     <%= link_to 'Go Back', products_path, class: "btn btn-outline-primary" %>
-                    <br />
-                    <br />
+                    <br/>
+                    <br/>
                     <%= form_for [@product, Order.new], method: :post do %>
-                      <script
-                        src="https://checkout.stripe.com/checkout.js" class="stripe-button"
+                    <script
+                        src="https://checkout.stripe.com/checkout.js"
+                        class="stripe-button"
                         data-key="pk_test_pTJ7JEFGxnr5gdgtDG33ZhTt"
                         data-amount=<%= @product.price * 100 %>
                         data-name="Fruit Ninja"
                         data-description="Buy <%= @product.name %>"
                         data-image="https://stripe.com/img/documentation/checkout/marketplace.png"
-                        data-locale="auto">
-                      </script>
+                        data-locale="auto"></script>
                     <% end %>
                 </section>
             </section>
-          </section>
         </section>
+    </section>
 </main>
-<br />
-<br />
-<br />
+<br/>
+<br/>
+<br/>
