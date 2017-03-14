@@ -5,6 +5,8 @@ git_source(:github) do |repo_name|
   "https://github.com/#{repo_name}.git"
 end
 
+#simple cov
+gem 'simplecov', :require => false, :group => :test
 # integration for stripe
 gem 'stripe-rails'
 # font -awesome icons

@@ -38,6 +38,7 @@ class OrdersController < ApplicationController
     receipt_email: customer_email
     )
     flash[:notice] = "Yay, thanks for purchasing " + @product.name
+    @order.save!
     redirect_to product_path(@product)
   end
 
