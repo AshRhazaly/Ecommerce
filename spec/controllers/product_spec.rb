@@ -15,4 +15,12 @@ describe ProductsController do
       for(:create, params: params).
       on(:product)
   end
+
+  it "assigns a new search to @search" do
+    assign(:search, MetaSearchTestHelper.new(:product=>"Product"))
+    assign(:products, [product(Product)]
+    render
+    rendered.should contain("Search")
+  end
+
 end
