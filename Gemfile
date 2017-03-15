@@ -5,8 +5,10 @@ git_source(:github) do |repo_name|
   "https://github.com/#{repo_name}.git"
 end
 
+#figaro
+gem "figaro"
 # metric fu
-gem 'metric_fu'
+gem 'metric_fu', git: 'https://github.com/bergholdt/metric_fu.git'
 #simple cov
 gem 'simplecov', :require => false, :group => :test
 # integration for stripe

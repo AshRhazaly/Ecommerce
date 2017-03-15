@@ -26,17 +26,7 @@ class OrdersController < ApplicationController
   def create
     @order = Order.new(product_id: params[:product_id])
     @product = Product.find(params[:product_id])
-    stripe_token = params[:stripeToken]
-    payment_type = params[:stripeTokenType]
-    customer_email = params[:stripeEmail]
-    amount = user_signed_in? ? @product.price * 0.85 : @product.price
-    Stripe.api_key = Rails.configuration.stripe.secret_key
-    Stripe::Charge.create(
-    amount: (amount * 100).to_i,
-    currency: "usd",
-    source: stripe_token,
-    receipt_email: customer_email
-    )
+    @order.stripe_transcation(params, user_signed_in?, @product.price)
     flash[:notice] = "Yay, thanks for purchasing " + @product.name
     @order.save!
     redirect_to product_path(@product)
