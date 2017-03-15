@@ -18,11 +18,7 @@
                     </header>
                     <br/>
                     <section class="card-text product-price">
-                        <%if user_signed_in? %>
-                          <%= number_to_currency(@product.price * 0.85) %>
-                        <%else %>
-                          <%= number_to_currency(@product.price) %>
-                        <%end%>
+                      <%= number_to_currency(discounted_price(current_user, @product.price)) %>
                     </section>
                     <br/>
                     <section class="card-text product-description">
