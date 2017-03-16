@@ -1,8 +1,11 @@
 class LineItemsController < ApplicationController
+  before_action :set_lineitems, only: [:create,:destroy,:update]
+
   def create
     @cart = Cart.find_or_create(session[:cart_id], current_user)
     session[:cart_id] = @cart.id
     @cart.stack_item(@product, params)
+    flash[:notice] = "Product added to cart"
     redirect_to @product
   end
 
@@ -11,7 +14,7 @@ class LineItemsController < ApplicationController
 
   def update
   end
-  
+
   private
   def set_lineitems
     @product = Product.find(params[:product_id])

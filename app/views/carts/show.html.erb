@@ -1,2 +1,41 @@
-<h1>Carts#show</h1>
-<p>Find me in app/views/carts/show.html.erb</p>
+<br/>
+<br/>
+<br/>
+<br/>
+<main class="container">
+    <h1>Shopping Cart</h1>
+    <br/>
+    <table class="table">
+        <thead>
+            <tr>
+                <th>Name</th>
+                <th>Quantity</th>
+                <th>Price</th>
+                <th>Subtotal</th>
+            </tr>
+        </thead>
+        <tbody>
+            <% @cart.line_items.each do |line_item|%>
+            <tr>
+                <td><%=line_item.product.name%></td>
+                <td><%=line_item.quantity %></td>
+                <td><%=number_to_currency(line_item.product.price) %></td>
+                <td><%=number_to_currency(line_item.subtotal) %></td>
+            </tr>
+            <tr>
+              <% end %>
+                <td></td>
+                <td></td>
+                <td>Total Price</td>
+                <td>
+                    <strong>
+                        <%=number_to_currency(@cart.total_price) %>
+                    </strong>
+                    <br/>
+                    <br/>
+                    <%= link_to 'Check Out',new_cart_payment_path(@cart), class: "btn btn-danger"%>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+</main>

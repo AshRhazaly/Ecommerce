@@ -1,0 +1,17 @@
+<%= bootstrap_form_for [@cart, Payment.new], method: :post do |f| %>
+<%= f.text_area :address%>
+<%= f.text_field :contact %>
+<script
+    src="https://checkout.stripe.com/checkout.js"
+    class="stripe-button"
+    data-key="pk_test_pTJ7JEFGxnr5gdgtDG33ZhTt"
+    data-amount=<%if user_signed_in? %>
+    <%= @cart.total_price * 85 %>
+    <%else %>
+    <%=@cart.total_price * 100 %>
+    <%end%>
+    data-name="Fruit Ninja"
+    data-description="Pay it here"
+    data-image="https://stripe.com/img/documentation/checkout/marketplace.png"
+    data-locale="auto"></script>
+<% end %>
