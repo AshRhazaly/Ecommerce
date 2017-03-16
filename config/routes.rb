@@ -1,29 +1,13 @@
 Rails.application.routes.draw do
-  get 'payments/new'
-
-  get 'payments/create'
-
-  get 'carts/new'
-
-  get 'carts/create'
-
-  get 'carts/edit'
-
-  get 'carts/update'
-
-  get 'carts/show'
-
-  get 'carts/destroy'
-
-  get 'line_items/create'
-
-  get 'line_items/destroy'
-
-  get 'line_items/update'
+  resources :carts do
+    resources :payments, only: [:create, :new]
+    resources :orders, only: [:create]
+  end
 
   mount RailsAdmin::Engine => '/admin', as: 'rails_admin'
   devise_for :users
   resources :products do
+    resources :line_items
     resources :orders
     collection do
       get 'search'
