@@ -41,7 +41,7 @@ class CartsController < ApplicationController
     # PATCH/PUT /carts/1.json
     def update
       @cart.transaction(params[:stripeToken])
-
+      @product.update_inventory
       respond_to do |format|
         if @cart.update(cart_params)
           format.html { redirect_to @cart, notice: 'Cart was successfully updated.' }

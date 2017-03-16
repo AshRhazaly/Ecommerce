@@ -6,6 +6,7 @@ class LineItemsController < ApplicationController
     session[:cart_id] = @cart.id
     @cart.stack_item(@product, params)
     flash[:notice] = "Product added to cart"
+    @product.decrement!(:inventory, params[:line_item][:quantity].to_i)
     redirect_to @product
   end
 

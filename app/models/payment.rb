@@ -6,7 +6,7 @@ class Payment < ApplicationRecord
     begin
       Stripe::Charge.create(
         amount: amount,
-        currency: "usd",
+        currency: "sgd",
         source: stripeToken
       )
       self.save

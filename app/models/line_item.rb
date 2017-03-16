@@ -6,4 +6,9 @@ class LineItem < ApplicationRecord
     self.product.price * self.quantity
   end
 
+  def inventory_update
+    self.product.inventory - self.quantity
+  end
+
+
 end

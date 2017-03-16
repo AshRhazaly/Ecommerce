@@ -24,13 +24,23 @@
                     <section class="card-text product-description">
                         <%= @product.description %>
                     </section>
+                    <br />
+                    <section class="card-text product-inventory">
+                      <strong>
+                        <%= @product.inventory %> left
+                        </strong>
+                    </section>
                     <br/>
                     <%= link_to 'Go Back', products_path, class: "btn btn-outline-primary" %>
                     <br/>
                     <br/>
-                    <%=bootstrap_form_for [@product, LineItem.new] do |f| %>
-                      <%=f.number_field :quantity, min: 1, class: 'col-3' %>
-                      <%=f.submit 'Add to cart', class: 'btn btn-danger btn-block' %>
+                    <% if @product.inventory > 0 %>
+                      <%=bootstrap_form_for [@product, LineItem.new] do |f| %>
+                        <%=f.number_field :quantity, min: 1, class: 'col-3' %>
+                        <%=f.submit 'Add to cart', class: 'btn btn-danger btn-block' %>
+                      <% end %>
+                    <% else %>
+                      <button class="btn btn-danger btn-block">We're sold out</button>
                     <% end %>
                 </section>
             </section>

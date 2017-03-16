@@ -19,20 +19,13 @@ class Cart < ApplicationRecord
         currency: "usd",
         source: stripeToken
         )
-      self.paid = true
-      self.update_inventory
+      self.save
     rescue
       puts "transaction fails"
     end
 
   end
 
-  def update_inventory
-    self.line_items.each do |item|
-      item.product.inventory -= item.quantity
-      item.product.save
-    end
-  end
 
   def stack_item(product, params)
     self.item_already_exists?(product) ? increase_quantity(params) : add_item(product, params)
