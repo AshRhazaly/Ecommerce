@@ -17,10 +17,10 @@
         <tbody>
             <% @cart.line_items.each do |line_item|%>
             <tr>
-                <td><%=line_item.product.name%></td>
+                <td><%=line_item.product_name%></td>
                 <td><%=line_item.quantity %></td>
-                <td><%=number_to_currency(line_item.product.price) %></td>
-                <td><%=number_to_currency(line_item.subtotal) %></td>
+                <td><%= number_to_currency(discounted_price(current_user, line_item.product_price))%></td>
+                <td><%= number_to_currency(discounted_price(current_user, line_item.subtotal))%></td>
             </tr>
             <tr>
               <% end %>
@@ -29,11 +29,14 @@
                 <td>Total Price</td>
                 <td>
                     <strong>
-                        <%=number_to_currency(@cart.total_price) %>
+                        <%=number_to_currency(discounted_price(current_user, @cart.total_price)) %>
                     </strong>
                     <br/>
                     <br/>
                     <%= link_to 'Check Out',new_cart_payment_path(@cart), class: "btn btn-danger"%>
+                    <br/>
+                    <br/>
+                    <%= link_to 'Clear Cart', cart_path(@cart), method: :delete, class: "btn btn-success" %>
                 </td>
             </tr>
         </tbody>

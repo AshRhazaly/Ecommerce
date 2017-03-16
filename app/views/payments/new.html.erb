@@ -4,5 +4,5 @@
 <br/>
 <main class="container">
   <h1>Check Out</h1>
-  <%= render "stripe_script" %>
+  <%= render partial: "stripe_script", :locals => {:cart => @cart,:payment => @payment} %>
 </main>

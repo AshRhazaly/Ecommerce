@@ -7,5 +7,8 @@ class CreateLineItems < ActiveRecord::Migration[5.0]
 
       t.timestamps
     end
+
+    add_index :line_items, :product_id
+    add_index :line_items, :cart_id
   end
 end

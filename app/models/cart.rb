@@ -3,6 +3,7 @@ class Cart < ApplicationRecord
   has_one :payment
   has_many :line_items
   has_many :products, through: :line_items
+  delegate :name, :price, :description, :inventory, :to => :product, :prefix => true
 
   def total_price
     total_price = 0
@@ -12,12 +13,13 @@ class Cart < ApplicationRecord
     total_price
   end
 
-  def transaction(stripeToken)
+  def transaction(stripeToken,stripeEmail)
     begin
       Stripe::Charge.create(
         amount: self.total_price*100,
         currency: "usd",
-        source: stripeToken
+        source: stripeToken,
+        receipt_email: stripeEmail
         )
       self.save
     rescue

@@ -40,8 +40,9 @@ class CartsController < ApplicationController
     # PATCH/PUT /carts/1
     # PATCH/PUT /carts/1.json
     def update
-      @cart.transaction(params[:stripeToken])
-      @product.update_inventory
+      @cart.transaction(params[:stripeToken],params[:stripeEmail])
+      @cart.line_items.destroy_all
+
       respond_to do |format|
         if @cart.update(cart_params)
           format.html { redirect_to @cart, notice: 'Cart was successfully updated.' }
@@ -56,11 +57,10 @@ class CartsController < ApplicationController
     # DELETE /carts/1
     # DELETE /carts/1.json
     def destroy
-      @cart.destroy
-      respond_to do |format|
-        format.html { redirect_to carts_url, notice: 'Cart was successfully destroyed.' }
-        format.json { head :no_content }
-      end
+      @cart.line_items.destroy_all
+      @product.increment!(:inventory,params[:line_item][:quantity].to_i)
+      flash[:notice] = "You have cleared your cart"
+      redirect_to @cart
     end
 
 private
