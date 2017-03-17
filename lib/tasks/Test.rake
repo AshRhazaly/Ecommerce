@@ -7,3 +7,8 @@ namespace :products do
     end
   end
 end
+
+namespace :db do
+  desc "db:migrate, db:seed, log:clear tasks streamlined"
+  task :streamlined => ["db:migrate", "db:seed", "log:clear"]
+end
