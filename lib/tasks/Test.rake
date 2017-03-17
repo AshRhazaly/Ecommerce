@@ -9,6 +9,6 @@ namespace :products do
 end
 
 namespace :db do
-  desc "db:migrate, db:seed, log:clear tasks streamlined"
-  task :streamlined => ["db:migrate", "db:seed", "log:clear"]
+  desc "db:drop, db:migrate, db:seed, log:clear tasks streamlined"
+  task :reset => ["db:drop","db:migrate", "db:seed", "log:clear"]
 end
