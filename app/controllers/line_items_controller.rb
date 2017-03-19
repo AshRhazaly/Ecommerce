@@ -12,7 +12,7 @@ class LineItemsController < ApplicationController
 
   def destroy
     @line_item = LineItem.find(params[:id])
-    @line_item.destroy
+    @line_item.product.destroy
   end
 
   def update
