@@ -54,6 +54,6 @@ class Cart < ApplicationRecord
     else
       cart = Cart.find(cart_id)
     end
-    return cart
+    cart
   end
 end
