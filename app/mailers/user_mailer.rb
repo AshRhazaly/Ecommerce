@@ -3,19 +3,19 @@ class UserMailer < ApplicationMailer
 
   def top_selling_product(user)
     @user = user
-    payments = Payment.all
-    product_name = []
-    product_quantity = []
-    product_hash = {}
-    payments.each do |payment|
-    payment.cart.line_items.each do |line_item|
-      product_name << line_item.product.name
-      product_quantity << line_item.quantity
+    @payments = Payment.all
+    @product_name = []
+    @product_quantity = []
+    @product_hash = {}
+    @payments.each do |payment|
+      payment.cart.line_items.each do |line_item|
+        @product_name << line_item.product.name
+        @product_quantity << line_item.quantity
+      end
     end
-    product_name.zip(product_quantity).group_by(&:first).map { |k, v| [k, v.map(&:last).inject(:+)] }.to_h
-    max_quantity = product_hash.values.max
-    @max_products = product_hash.select {|key,value| value == max_quantity}.keys
+    @product_hash = @product_name.zip(@product_quantity).group_by(&:first).map { |k, v| [k, v.map(&:last).inject(:+)] }.to_h
+    @top_products = @product_hash.sort_by { |k,v| -v }.first(2).to_h.keys
     # if there's a tie there'll be 2 values in max_products
-    
+    mail(to: @user.email , subject: 'Our best selling product in Fruit Ninja')
   end
 end

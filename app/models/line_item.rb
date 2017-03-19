@@ -6,5 +6,4 @@ class LineItem < ApplicationRecord
   def subtotal
     self.product.price * self.quantity
   end
-
 end
