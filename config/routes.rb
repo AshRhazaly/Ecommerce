@@ -1,6 +1,11 @@
 Rails.application.routes.draw do
+  get 'shopping_carts/create'
+
+  get 'shopping_carts/show'
+
   mount RailsAdmin::Engine => '/admin', as: 'rails_admin'
   devise_for :users
+  resource :shopping_cart
   resources :products do
     resources :orders
     collection do
