@@ -1,28 +1,18 @@
 class CartsController < ApplicationController
-  # after_action :authenticate_user!, only: [:create, :new]
   before_action :set_cart, only: [:show, :edit, :update, :destroy]
-    # GET /carts
-    # GET /carts.json
-    def index
-      @carts = Cart.all
-    end
 
-    # GET /carts/1
-    # GET /carts/1.json
+
     def show
     end
 
-    # GET /carts/new
     def new
       @cart = Cart.new
     end
 
-    # GET /carts/1/edit
+
     def edit
     end
 
-    # POST /carts
-    # POST /carts.json
     def create
       @cart = Cart.new
 
@@ -58,7 +48,6 @@ class CartsController < ApplicationController
     # DELETE /carts/1.json
     def destroy
       @cart.line_items.destroy_all
-      @product.increment!(:inventory,params[:line_item][:quantity].to_i)
       flash[:notice] = "You have cleared your cart"
       redirect_to @cart
     end
