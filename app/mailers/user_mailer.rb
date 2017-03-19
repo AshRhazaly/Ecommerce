@@ -15,7 +15,6 @@ class UserMailer < ApplicationMailer
     end
     @product_hash = @product_name.zip(@product_quantity).group_by(&:first).map { |k, v| [k, v.map(&:last).inject(:+)] }.to_h
     @top_products = @product_hash.sort_by { |k,v| -v }.first(2).to_h.keys
-    # if there's a tie there'll be 2 values in max_products
     mail(to: @user.email , subject: 'Our best selling product in Fruit Ninja')
   end
 end
