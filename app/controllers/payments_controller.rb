@@ -10,6 +10,7 @@ class PaymentsController < ApplicationController
     @payment.transaction(params[:stripeToken], user_signed_in?)
     flash[:notice] = "THANKS FOR PAYING"
     @payment.save
+    session.clear
     redirect_to products_path
   end
 
