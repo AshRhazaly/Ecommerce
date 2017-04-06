@@ -1,0 +1,44 @@
+<br/>
+<br/>
+<br/>
+<br/>
+<main class="container">
+    <h1>Shopping Cart</h1>
+    <br/>
+    <table class="table">
+        <thead>
+            <tr>
+                <th>Name</th>
+                <th>Quantity</th>
+                <th>Price</th>
+                <th>Subtotal</th>
+            </tr>
+        </thead>
+        <tbody>
+            <% @cart.line_items.each do |line_item|%>
+            <tr>
+                <td><%=line_item.product_name%></td>
+                <td><%=line_item.quantity %></td>
+                <td><%= number_to_currency(discounted_price(current_user, line_item.product_price))%></td>
+                <td><%= number_to_currency(discounted_price(current_user, line_item.subtotal))%></td>
+            </tr>
+            <tr>
+              <% end %>
+                <td></td>
+                <td></td>
+                <td>Total Price</td>
+                <td>
+                    <strong>
+                        <%=number_to_currency(discounted_price(current_user, @cart.total_price)) %>
+                    </strong>
+                    <br/>
+                    <br/>
+                    <%= link_to 'Check Out',new_cart_payment_path(@cart), class: "btn btn-danger"%>
+                    <br/>
+                    <br/>
+                    <%= link_to 'Clear Cart', cart_path(@cart), method: :delete, class: "btn btn-success" %>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+</main>

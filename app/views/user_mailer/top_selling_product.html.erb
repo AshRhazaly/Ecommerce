@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta content='text/html; charset=UTF-8' http-equiv='Content-Type'/>
+    </head>
+    <body>
+        <h3>Hey
+            <%= @user.username %></h3>
+        <section class="container">
+            <strong>Here's our top selling products for the month</strong>
+            <% @top_products.each do |product|%>
+            <ul>
+                <li>
+                    <h5><%= product%>
+                    </h5>
+                </li>
+            </ul>
+            <% end %>
+        </section>
+
+    </body>
+</html>
