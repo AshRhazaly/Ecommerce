@@ -5,6 +5,8 @@ git_source(:github) do |repo_name|
   "https://github.com/#{repo_name}.git"
 end
 
+#database design
+gem "rails-erd"
 #figaro
 gem "figaro"
 # metric fu
